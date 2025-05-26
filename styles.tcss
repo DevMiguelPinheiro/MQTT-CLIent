@@ -1,0 +1,16 @@
+#titulo {
+    background: $surface;
+    color: $text;
+    text-style: bold;
+    padding: 1 2;
+}
+
+#arvore {
+    border: solid green;
+    height: 1fr;
+}
+
+#payloads {
+    border: solid cyan;
+    height: 1fr;
+}
