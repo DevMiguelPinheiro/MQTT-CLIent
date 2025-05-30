@@ -11,6 +11,59 @@ Um cliente MQTT com interface gráfica desenvolvido em Python usando a bibliotec
 - Exportação de resultados para CSV
 - Suporte a diferentes tipos de payload (texto, JSON)
 
+## Arquitetura
+
+```mermaid
+graph TD
+    A[Interface Gráfica] --> B[Controllers]
+    B --> C[Models]
+    C --> D[Broker MQTT]
+    
+    subgraph Controllers
+        B1[AppController]
+        B2[StressTestController]
+    end
+    
+    subgraph Models
+        C1[BrokerModel]
+        C2[StressTestModel]
+    end
+    
+    B1 --> C1
+    B2 --> C1
+    B2 --> C2
+```
+
+## Fluxo de Dados
+
+```mermaid
+sequenceDiagram
+    participant UI as Interface
+    participant CT as Controller
+    participant MD as Model
+    participant BR as Broker MQTT
+    
+    UI->>CT: Ação do Usuário
+    CT->>MD: Atualiza Dados
+    MD->>BR: Envia Comando
+    BR-->>MD: Resposta
+    MD-->>CT: Atualiza Estado
+    CT-->>UI: Atualiza Interface
+```
+
+## Fluxo de Teste de Estresse
+
+```mermaid
+graph LR
+    A[Início] --> B[Configurar Teste]
+    B --> C[Selecionar Broker]
+    C --> D[Definir Parâmetros]
+    D --> E[Executar Teste]
+    E --> F[Coletar Métricas]
+    F --> G[Exportar CSV]
+    G --> H[Fim]
+```
+
 ## Requisitos
 
 - Python 3.8+
